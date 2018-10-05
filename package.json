@@ -10,6 +10,16 @@
   },
   "devDependencies": {
     "@illwatchers/eslint-config": "1.0.2",
-    "eslint": "5.6.1"
-  }
+    "eslint": "5.6.1",
+    "husky": "1.1.1",
+    "lint-staged": "7.3.0"
+  },
+  "husky": {
+    "hooks": {  
+       "pre-commit": "lint-staged"
+     }
+   },
+   "lint-staged": {
+     "*.js": ["eslint"]
+   }
 }
