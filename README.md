@@ -1,6 +1,21 @@
 
 # illWatchers Backend
 
+GraphQL middleware for illWatch project
+
+### Installation
+Install all dependencies by running
+
+    yarn 
+or
+
+    yarn install
+
+### Development
+For development purposes you can start the app by running command
+
+    yarn start
+By default development server starts on `localhost:4000`
 
 **illWatchers UI** repo lives [here](https://github.com/illWatchers/ill-watch-ui) 
 
