@@ -1,4 +1,26 @@
 const { ApolloServer, gql } = require('apollo-server')
+const admin = require('firebase-admin')
+
+
+var serviceAccount = require('../config/firebase/serviceAccountKey.json')
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+})
+
+var db = admin.firestore()
+
+
+db.collection('hell_ow_lord').get()
+    .then((snapshot) => {
+      snapshot.forEach((doc) => {
+        console.log(doc.data().value)
+      })
+    })
+    .catch((err) => {
+      console.log('Error getting documents', err)
+    })
+
 
 // This is a (sample) collection of books we'll be able to query
 // the GraphQL server for.  A more complete example might fetch
