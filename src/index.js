@@ -17,7 +17,6 @@ const { ApolloServer, gql } = require('apollo-server')
 
 var db = admin.firestore()
 
-
 db.collection('poc').get()
   .then((snapshot) => {
     snapshot.forEach((doc) => {
