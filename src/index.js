@@ -1,5 +1,12 @@
 const admin = require('firebase-admin')
-const serviceAccount = require('../config/firebase/serviceAccountKey.json')
+
+let serviceAccount
+try {
+  serviceAccount = require('../config/firebase/serviceAccountKey.json')
+} catch (e) {
+  serviceAccount = JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT_KEY, 'base64').toString())
+}
+
 const schema = require('./schema')
 
 admin.initializeApp({
@@ -12,37 +19,25 @@ var db = admin.firestore()
 
 
 db.collection('poc').get()
-    .then((snapshot) => {
-      snapshot.forEach((doc) => {
-        console.log(doc.data().watchList)
-      })
+  .then((snapshot) => {
+    snapshot.forEach((doc) => {
+      console.log(doc.data().watchList)
     })
-    .catch((err) => {
-      console.log('Error getting documents', err)
-    })
+  })
+  .catch((err) => {
+    console.log('Error getting documents', err)
+  })
 
 
-// This is a (sample) collection of books we'll be able to query
-// the GraphQL server for.  A more complete example might fetch
-// from an existing data source like a REST API or database.
-const books = [
-  {
-    title: 'Harry Potter and the Chamber of Secrets',
-    author: 'J.K. Rowling',
-  },
-  {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton',
-  },
-]
-
-const server = new ApolloServer({ 
+const server = new ApolloServer({
   schema,
-  context: { db } 
+  context: { db }
 })
 
-// This `listen` method launches a web-server.  Existing apps
-// can utilize middleware options, which we'll discuss later.
-server.listen().then(({ url }) => {
+const serverSettings = {
+  port: process.env.NODE_ENV === 'development' ? 4000 : process.env.PORT,
+}
+
+server.listen(serverSettings).then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`)
 })
