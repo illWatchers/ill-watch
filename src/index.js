@@ -1,5 +1,10 @@
 const admin = require('firebase-admin')
+const schema = require('./schema')
+const { ApolloServer, gql } = require('apollo-server')
+const fetch = require('node-fetch')
+const { TheMovieDB } = require('./theMovieDB')
 
+// firebase service account
 let serviceAccount
 try {
   serviceAccount = require('../config/firebase/serviceAccountKey.json')
@@ -7,30 +12,17 @@ try {
   serviceAccount = JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT_KEY, 'base64').toString())
 }
 
-const schema = require('./schema')
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 })
 
-const { ApolloServer, gql } = require('apollo-server')
-
 var db = admin.firestore()
 
-db.collection('poc').get()
-  .then((snapshot) => {
-    snapshot.forEach((doc) => {
-      console.log(doc.data().watchList)
-    })
-  })
-  .catch((err) => {
-    console.log('Error getting documents', err)
-  })
-
-
+// apollo server connection & settings 
 const server = new ApolloServer({
   schema,
-  context: { db }
+  context: { db },
+  dataSources: () => ({ theMovieDB: new TheMovieDB() })
 })
 
 const serverSettings = {
