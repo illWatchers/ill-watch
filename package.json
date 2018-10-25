@@ -7,6 +7,7 @@
   "license": "GPL-3.0-or-later",
   "scripts": {
     "start": "nodemon .src/index.js",
+    "deploy": "now --public -e SERVICE_ACCOUNT_KEY=@firebase-service-account-key && now alias gql",
     "lint": "eslint ."
   },
   "devDependencies": {
