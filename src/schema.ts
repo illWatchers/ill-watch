@@ -2,7 +2,7 @@ const { makeExecutableSchema } = require("graphql-tools")
 
 const { resolvers } = require("./resolvers")
 
-const schema = `
+const typeDefs = `
   type Movie {
     original_title: String
   }
@@ -12,7 +12,7 @@ const schema = `
   }
 `
 
-module.exports = makeExecutableSchema({
-  typeDefs: schema,
+export const schema = makeExecutableSchema({
+  typeDefs,
   resolvers
 })

@@ -5,6 +5,6 @@ module.exports = {
     },
     "extends": ["@illwatchers"],
     "parserOptions": {
-        "ecmaVersion": 2015
+        "ecmaVersion": 2017
     }
 }

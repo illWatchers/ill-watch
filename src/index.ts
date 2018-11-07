@@ -9,7 +9,7 @@ let serviceAccount
 try {
   serviceAccount = require('../config/firebase/serviceAccountKey.json')
 } catch (e) {
-  serviceAccount = JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT_KEY, 'base64').toString())
+  serviceAccount = JSON.parse(Buffer.from(process.env.SERVICE_ACCOUNT_KEY || '', 'base64').toString())
 }
 
 admin.initializeApp({
@@ -29,6 +29,6 @@ const serverSettings = {
   port: process.env.NODE_ENV === 'development' ? 4000 : process.env.PORT,
 }
 
-server.listen(serverSettings).then(({ url }) => {
+server.listen(serverSettings).then(({ url }: { url: string }) => {
   console.log(`🚀  Server ready at ${url}`)
 })
