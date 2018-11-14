@@ -6,12 +6,13 @@
   "author": "illWatchers",
   "license": "GPL-3.0-or-later",
   "scripts": {
-    "start": "NODE_ENV=development ts-node src/index.ts",
+    "dev": "NODE_ENV=development nodemon",
+    "start": "nodemon",
     "deploy": "now --public -e THE_MOVIE_DB_API_KEY=@the-movie-db-api-key -e SERVICE_ACCOUNT_KEY=@firebase-service-account-key && now alias gql",
     "lint": "eslint ."
   },
   "devDependencies": {
-    "@illwatchers/eslint-config": "1.0.2",
+    "@illwatchers/eslint-config": "1.0.3",
     "eslint": "5.6.1",
     "husky": "1.1.1",
     "lint-staged": "7.3.0",

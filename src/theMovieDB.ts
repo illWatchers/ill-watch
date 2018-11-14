@@ -1,17 +1,26 @@
-const { RESTDataSource } = require('apollo-datasource-rest')
+import { RESTDataSource } from 'apollo-datasource-rest'
 
-let API_KEY: string
-try {
-  API_KEY = require('../config/private.json').themoviedb.api_key
-} catch (e) {
-  API_KEY = process.env.THE_MOVIE_DB_API_KEY || ''
+const getApiKey = (): string => {
+  try {
+    // try to get key from env
+    const key = process.env.THE_MOVIE_DB_API_KEY
+    if (!key) { throw new Error() }
+    return key
+  } catch (e) {
+    const themoviedbConfig = require('../config/private.json')
+    // get key from local config
+    const movieDbConfig: any = themoviedbConfig.themoviedb
+    return movieDbConfig.api_key
+  }
 }
 
 export class TheMovieDB extends RESTDataSource {
+  apiKey: string = ''
+
   constructor() {
     super()
     this.baseURL = "https://api.themoviedb.org/3/"
-    this.apiKey = API_KEY
+    this.apiKey = getApiKey()
   }
 
   async getMovieByID(movieId: number) {

@@ -167,10 +167,10 @@
     lodash "^4.17.5"
     protobufjs "^6.8.6"
 
-"@illwatchers/eslint-config@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@illwatchers/eslint-config/-/eslint-config-1.0.2.tgz#795bc5e23068bb0596266891df0f9675c68bc3b9"
-  integrity sha512-Jy/Djc2/ml8K6ELdqMtVM5zF0JznvDrNZ21mekvJ0PR2YWXPBbtjf8avGEVWz4V76ggpcNYlMAH2oSWrHD3ovg==
+"@illwatchers/eslint-config@1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@illwatchers/eslint-config/-/eslint-config-1.0.3.tgz#db69edbae204cfc17294922e19b9fab28aaa9189"
+  integrity sha512-TLg8i4jvCoEkA3af5t0DZG/M+tFYiQ0V+t3N3eXuxhbUehsQKpuH7WtPUUHIXr+k7JjGeTsHECeOrL6d/ySsjA==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"

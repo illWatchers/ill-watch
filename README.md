@@ -27,3 +27,16 @@ yarn deploy
 **Firebase** project lives [here](https://console.firebase.google.com/u/1/project/illwatchers-32/database)
 
 **Private config** repository lives [here](https://gitlab.com/illWatchers/config), write <illwatchersinfo@gmail.com> to request an access
+
+
+### Examples
+
+```
+    query {
+        movieByID(movieID: 9091) {
+            original_title
+        }
+        
+        watchlist
+    }
+```
