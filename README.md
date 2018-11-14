@@ -14,7 +14,7 @@ or
 ### Development
 For development purposes you can start the app by running command
 
-    yarn start
+    yarn dev
 By default development server starts on `localhost:4000`
 
 To deploy development server you have to install [`now-cli`](https://zeit.co/download#now-cli) tool and run
