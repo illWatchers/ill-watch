@@ -27,4 +27,10 @@ export class TheMovieDB extends RESTDataSource {
     const data = await this.get(`movie/${movieId}?api_key=${this.apiKey}`)
     return data
   }
+
+  async getMoviesByTitle(title: string) {
+    const searchReslut = await this.get(`search/movie/?api_key=${this.apiKey}&query=${title}`)
+    const data = searchReslut.results
+    return data
+  }
 }

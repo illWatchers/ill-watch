@@ -11,6 +11,9 @@ export const resolvers = {
     },
     movieByID: (root: any, args: any, context: any) => {
       return context.dataSources.theMovieDB.getMovieByID(args.movieID)
+    },
+    moviesByTitle: (root: any, args: any, context: any) => {
+      return context.dataSources.theMovieDB.getMoviesByTitle(args.title)
     }
   },
 }
