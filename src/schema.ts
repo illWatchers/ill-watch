@@ -4,7 +4,7 @@ import { query } from './schema/Query'
 import { mutation } from './schema/Mutation'
 
 const typeDefs = [
-  query, 
+  query,
   mutation
 ]
 
