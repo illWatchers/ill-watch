@@ -21,7 +21,7 @@ const serviceAccount = getServiceAccount()
 // auth to firebase
 admin.initializeApp({ credential: admin.credential.cert(serviceAccount) })
 // firestore DB ref
-var db = admin.firestore()
+var db = admin.firestore
 
 // apollo server connection & settings 
 const server = new ApolloServer({
