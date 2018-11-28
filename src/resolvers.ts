@@ -10,7 +10,7 @@ export const resolvers = {
         }
       })
       .catch((err: Error) => {
-        console.log('Error getting documents', err)
+        console.error('Error getting documents', err)
       })
     },
     movieByID: (root: any, args: any, context: any) => {
