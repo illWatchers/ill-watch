@@ -15,6 +15,4 @@ export const query = () => [
   queries,
   movie,
   movieSearchResult
-  // movie,
-  // movieSearchResult
 ]
