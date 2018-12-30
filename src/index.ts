@@ -1,6 +1,7 @@
-import { schema } from './schema'
 import admin from 'firebase-admin'
 import { ApolloServer } from 'apollo-server'
+
+import { schema } from './schema'
 import { TheMovieDB } from './theMovieDB'
 
 const getServiceAccount = () => {
@@ -17,7 +18,22 @@ const getServiceAccount = () => {
   }
 }
 
+const getApiKey = (): string => {
+  try {
+    // try to get key from env
+    const key = process.env.THE_MOVIE_DB_API_KEY
+    if (!key) { throw new Error() }
+    return key
+  } catch (e) {
+    const themoviedbConfig = require('../config/private.json')
+    // get key from local config
+    const movieDbConfig: any = themoviedbConfig.themoviedb
+    return movieDbConfig.api_key
+  }
+}
+
 const serviceAccount = getServiceAccount()
+
 // auth to firebase
 admin.initializeApp({ credential: admin.credential.cert(serviceAccount) })
 // firestore DB ref
@@ -27,8 +43,16 @@ var db = admin.firestore
 const server = new ApolloServer({
   // executable schema, includes resolvers
   schema,
-  // app context. TODO: probably should be async
-  context: { db },
+  // app context
+  context: async () => {
+    console.log('Executes every time request is sent')
+    const apiKey = await getApiKey()
+
+    return ({
+      db,
+      apiKey
+    })
+  },
   // APIs
   dataSources: () => ({ theMovieDB: new TheMovieDB() })
 })

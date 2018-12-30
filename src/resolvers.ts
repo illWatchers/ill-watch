@@ -13,13 +13,16 @@ export const resolvers = {
         console.error('Error getting documents', err)
       })
     },
+    
     movieByID: (root: any, args: any, context: any) => {
       return context.dataSources.theMovieDB.getMovieByID(args.movieID)
     },
+
     moviesByTitle: (root: any, args: any, context: any) => {
       return context.dataSources.theMovieDB.getMoviesByTitle(args.title)
     }
   },
+
   Mutation: {
     addToWatchList: (root: any, args: any, context: any) => {
       context.db().collection('poc').doc('watchList').update({
@@ -27,6 +30,7 @@ export const resolvers = {
       })
       return args.movieID
     },
+  
     removeFromWatchList: (root: any, args: any, context: any) => {
       context.db().collection('poc').doc('watchList').update({
         list: context.db.FieldValue.arrayRemove(args.movieID)
