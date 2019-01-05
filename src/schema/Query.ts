@@ -6,7 +6,7 @@ import {
 const queries = `
   type Query {
     watchlist: [Int]
-    movieByID(movieID: Int): Movie
+    movieByID(movieID: Int, includeCredits: Boolean): Movie
     moviesByTitle(title: String): [MovieSearchResult]
   }
 `

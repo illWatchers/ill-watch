@@ -2,6 +2,7 @@ import { productionCompanies } from './productionCompanies'
 import { productionCountries } from './productionCountries'
 import { spokenLanguages } from './spokenLanguage'
 import { genre } from './genre'
+import { credits } from './credits'
 
 const basicMovieTypes = `
   adult: Boolean
@@ -40,6 +41,7 @@ const movieType = `
     spoken_languages: [SpokenLanguages]
     status: String
     tagline: String
+    credits: Credits
   }
 `
 
@@ -48,7 +50,8 @@ export const movie = () => [
   productionCompanies,
   productionCountries,
   spokenLanguages,
-  genre
+  genre,
+  credits
 ]
 
 export const movieSearchResult = () => [
